@@ -3,11 +3,11 @@ from decouple import config
 import datetime
 
 database = MySQLDatabase(
-                       'tiendas_cf',
-                        user='root',
-                        password =  '123456789',#=config('DatabasesPass'), 
+                       'DATABASE_NAME',
+                        user='USER_DATABASE',
+                        password =  'PASSWORDB',#=config('DatabasesPass'), 
                         port=3306, 
-                        host='localhost'
+                        host='HOST'
 )
 
 class User(Model): #tablas 

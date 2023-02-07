@@ -23,26 +23,26 @@ En la pagina principal podemos ver 3 botonoes uno de ellos nos lleva directo al 
 
 ![](photos/register.png)
 
-esta es la pagina de registro, cuenta de 3 campos username, email, password, ningun username ni email se puede repetir.
+Esta es la pagina de registro, cuenta de 3 campos username, email, password, ningun username ni email se puede repetir.
 
 
 ### login
 
 ![](photos/login.png)
 
-cuenta de dos campos email y password.
+Cuenta de dos campos email y password.
 
 ## products
 
 ![](photos/products.png)
-se almacenan todos los prodcutos, cuando el usuario no tiene productos creados esta en blanco cuando crea productos se ven 2 opciones, delete y upgrade.
+Se almacenan todos los prodcutos, cuando el usuario no tiene productos creados esta en blanco cuando crea productos se ven 2 opciones, delete y upgrade.
 
 
 ## new product
 
 ![](photos/newproduct.png)
 
-crea nuevos productos cuenta con 2 campos nombre y precio 
+Crea nuevos productos cuenta con 2 campos nombre y precio 
 
 
 [](photos/productcreate.png)
