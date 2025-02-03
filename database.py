@@ -1,13 +1,14 @@
 from peewee import *
-from decouple import config
+#from decouple import config
 import datetime
+import setup 
 
 database = MySQLDatabase(
-                       'DATABASE_NAME',
-                        user='USER_DATABASE',
-                        password =  'PASSWORDB',#=config('DatabasesPass'), 
+                       setup.DB_NAME,
+                        user= setup.DB_USER_NAME,
+                        password =  setup.PASSWORD, 
                         port=3306, 
-                        host='HOST'
+                        host= setup.HOST
 )
 
 class User(Model): #tablas 

@@ -1,26 +1,18 @@
-from flask import Flask
 from flask import render_template,request,redirect
 from flask import session
-
 from database import  User
 from database import Product
+from config import app
 
-app = Flask(__name__)
-app.secret_key = '123456789'
 
 
 
 
 @app.route('/')
 def index ():
-
-    
-    product1 = 0
     products = Product.select()
-    for product in  products:
-        product1 += 1
-        
-    return render_template('index.html', products = product1)
+    
+    return render_template('index.html', products = len(products))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -100,7 +92,7 @@ def products ():
         #print(user.show_user)
         products = Product.select().where(Product.user == _user)
         user = User.get(session['user'])
-        a= user.email
+        a = user.email
         return render_template('products/index.html', products= products, user = user)
     else:
         return redirect('/')
@@ -189,9 +181,3 @@ def logout ():
     session.clear()
     return render_template('out/index.html')
 
-
-   
-
-if __name__ == '__main__':
-
-    app.run(debug=True)
