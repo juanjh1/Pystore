@@ -1,0 +1,44 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.navbar{
+    
+}
+
+.notification{
+
+    color: white;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    margin:  auto;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.error{
+    background-color:#e5462b;
+}
+
+
+.succes{
+    background-color:#a2d892;
+}
+
+.info {
+
+}
+
+.notification-closer{
+
+    font-size: 18px;
+    font-weight: bolder;
+    cursor:pointer;
+    border: 1px solid black;
+    padding: 5px ;
+}

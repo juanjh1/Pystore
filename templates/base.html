@@ -8,24 +8,30 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script src="js/main.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="statics/css/base.css">
+
+    
+
 </head>
-<body class="antialiased bg-body text-body font-body">
+<body class="antialiased text-body font-body bg-gray-50">
 
   
-    <section class="relative pb-20">
-        <nav class="flex justify-between items-center py-8 px-4 xl:px-10">
-            <ul class="hidden lg:flex lg:ml-auto lg:mr-12 lg:items-center lg:w-auto lg:space-x-12">
-                <li><a class="text-sm font-medium" href="/login">Login</li>
+    <section class="relative pb-20 ">
+        <nav class=" navbar flex justify-between items-center  xl:px-10  bg-white">
+            <ul class="hidden lg:flex lg:ml-auto lg:mr-12 lg:items-center lg:w-auto bg-red-400  lg:space-x-12 py-3 px-8 mt-3.5 text-white  mb-1.5 hover:text-red-50 rounded hover:bg-red-100  transition duration-200">
+                <a class="text-sm font-medium" href="/login">Login</a>
             </ul>
             <div class="hidden lg:block">
-                <a class="inline-block py-3 px-8 text-sm leading-normal font-medium bg-red-50 hover:bg-red-100 text-red-500 rounded transition duration-200" href="/register">Register</a>
+                <a class="inline-block py-3 px-8 text-sm leading-normal font-medium bg-red-400  hover:bg-red-100  hover:text-red-50 text-white rounded transition mb-1.5 mt-3.5 duration-200" href="/register">Register</a>
             </div>
         </nav>
-
+       
         {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             {% for category, message in messages %}
-                <p class="flash-{{ category }}">{{ message }}</p>
+            <div  class="notification {{category}}">
+                <p>{{message}}</p> <span class="notification-closer">x</span>
+            </div>  
             {% endfor %}
         {% endif %}
         {% endwith %}
@@ -40,6 +46,13 @@
         </div>
      
     </section>
+
+
+    <script src="statics/js/main.js">
+     
+     
+    </script>
+
 
 </body>
 </html>
