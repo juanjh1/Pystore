@@ -11,7 +11,6 @@ from config import app
 @app.route('/')
 def index ():
     products = Product.select()
-    
     return render_template('index.html', products = len(products))
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -79,8 +78,7 @@ def login():
             return render_template('login.html')
                 
         
-   
-        
+
 
 @app.route('/products')
 def products ():
