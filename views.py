@@ -1,26 +1,21 @@
-from flask import Flask
-from flask import render_template,request,redirect
+from flask import render_template,request,redirect,flash
 from flask import session
-
 from database import  User
 from database import Product
-
-app = Flask(__name__)
-app.secret_key = '123456789'
+from config import app
 
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    
+    return render_template('error/404.html'), 404
 
 
 @app.route('/')
 def index ():
-
-    
-    product1 = 0
     products = Product.select()
-    for product in  products:
-        product1 += 1
-        
-    return render_template('index.html', products = product1)
+    return render_template('index.html', products = len(products))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -32,26 +27,31 @@ def register():
             password = request.form.get('password')
             username = request.form.get('username')
 
-            
+            username_exist =  User.filter( username = username )
+            email_exist =  User.filter(email = email)
+            if  username_exist:
+                flash('El nombre de usuario ya está registrado.', 'error')
+            if email_exist :
+                flash('El correo electrónico ya está registrado.', 'error')
+            if username_exist and email_exist:
+                    return redirect('/')  
 
-            if email and password :
-                
-                    user = User.create_user(username= username, email = email, password=password) #insert into
+            if email and password and username:       
+                    user = User.create_user(username= username, email = email, password=password)
+
                     if user is not None:
                         session['user'] = user.id
                         session['status'] = 'login'
-                        print(user)
                         if user:
                             return redirect('/products')
-                    else:
-                        return redirect('/')
+            else:
+                flash('Hubo un error al ingresar los datos', 'error')
+                           
+            return redirect('/')                    
+                    
                 
-        users = User.select()
-        num_user = 0
-        for i in users:
-            num_user += 1
-            
-        if num_user != 0:
+        users = User.select()       
+        if len(users) != 0:
             if session.get('status') == 'login':
                 return redirect('/products')
             else:
@@ -87,8 +87,7 @@ def login():
             return render_template('login.html')
                 
         
-   
-        
+
 
 @app.route('/products')
 def products ():
@@ -100,7 +99,7 @@ def products ():
         #print(user.show_user)
         products = Product.select().where(Product.user == _user)
         user = User.get(session['user'])
-        a= user.email
+        a = user.email
         return render_template('products/index.html', products= products, user = user)
     else:
         return redirect('/')
@@ -189,9 +188,3 @@ def logout ():
     session.clear()
     return render_template('out/index.html')
 
-
-   
-
-if __name__ == '__main__':
-
-    app.run(debug=True)
